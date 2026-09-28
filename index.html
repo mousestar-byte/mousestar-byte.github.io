@@ -1,14 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Webpage</title>
+  <title>My Blog</title>
+
+  <style>
+    body {
+      max-width: 700px;
+      margin: 40px auto;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    h1 {
+      color: darkblue;
+    }
+
+    p {
+      margin-bottom: 20px;
+    }
+  </style>
 </head>
+
 <body>
-  <h1>Hello, world!</h1>
-  <p>This is my first webpage.</p>
-  <button onclick="alert('Hello!')">Click me</button>
+  <h1>My Blog</h1>
+
+  <div id="blog-text">
+My first paragraph goes here.
+
+This is my second paragraph. I do not need to write the &lt;p&gt; tag.
+
+This is my third paragraph.
+  </div>
+
+  <script>
+    const blog = document.getElementById("blog-text");
+    const text = blog.textContent.trim();
+
+    blog.textContent = "";
+
+    text
+      .split(/\n\s*\n/)
+      .forEach(paragraphText => {
+        const paragraph = document.createElement("p");
+        paragraph.textContent = paragraphText.trim();
+        blog.appendChild(paragraph);
+      });
+  </script>
 </body>
 </html>
 
