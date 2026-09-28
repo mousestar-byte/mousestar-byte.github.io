@@ -24,26 +24,23 @@
 <body>
   <h1>My Blog</h1>
 
-  <div id="blog-text">
-My first paragraph goes here.
-
-This is my second paragraph. I do not need to write the &lt;p&gt; tag.
-
-This is my third paragraph.
-  </div>
+  <div id="blog-text">Loading...</div>
 
   <script>
-    const blog = document.getElementById("blog-text");
-    const text = blog.textContent.trim();
+    fetch("post.txt")
+      .then(response => response.text())
+      .then(text => {
+        const blog = document.getElementById("blog-text");
+        blog.textContent = "";
 
-    blog.textContent = "";
-
-    text
-      .split(/\n\s*\n/)
-      .forEach(paragraphText => {
-        const paragraph = document.createElement("p");
-        paragraph.textContent = paragraphText.trim();
-        blog.appendChild(paragraph);
+        text
+          .trim()
+          .split(/\n\s*\n/)
+          .forEach(paragraphText => {
+            const paragraph = document.createElement("p");
+            paragraph.textContent = paragraphText.trim();
+            blog.appendChild(paragraph);
+          });
       });
   </script>
 </body>
